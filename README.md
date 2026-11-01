@@ -1,9 +1,13 @@
-# DEPPI-Web · Entrega 1
+# DEPPI-Web
 
-```bash
-npm install
-cp .env.example .env     # VITE_API_URL
-npm run dev
-```
-- **Permissões:** `src/permissoes.js` (menu + rotas por cargo) e `src/ProtectedRoute.jsx` (login / 403).
-- **API:** tudo que depende do contrato está em `src/api.js` (`ROTAS`, `login`, `buscarResumo`).
+Front-end do DEPPI (Next.js).
+
+    npm install
+    npm run dev
+
+Abre em http://localhost:3000.
+
+- **API:** as chamadas passam pelo proxy `/api-proxy`, configurado em `next.config.mjs`.
+- **Permissões:** `src/permissoes.js` (menu e rotas por cargo); a checagem fica em `src/app/(painel)/layout.jsx`.
+- **Chamadas ao back:** `src/services/api.js` (`ROTAS`, `login`, `buscarResumo`).
+- **Telas pendentes:** aparecem como "em construção" em `src/app/(painel)/[tela]/page.jsx`.
