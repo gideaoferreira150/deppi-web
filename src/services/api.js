@@ -3,6 +3,7 @@ const BASE = '/api-proxy'
 export const ROTAS = {
   login: '/auth/login',
   resumo: '/admin/relatorios/resumo',
+  instituicoes: '/instituicao',
 }
 const TOKEN_KEY = 'deppi.token'
 
@@ -114,3 +115,15 @@ export async function buscarResumo() {
     ),
   }
 }
+
+export const listarInstituicoes = () =>
+  request(ROTAS.instituicoes)
+
+export const criarInstituicao = (dados) =>
+  request(`${ROTAS.instituicoes}/cadastrar`, { method: 'POST', body: dados })
+
+export const atualizarInstituicao = (id, dados) =>
+  request(`${ROTAS.instituicoes}/atualizar`, { method: 'PUT', body: { id, ...dados } })
+
+export const excluirInstituicao = (id) =>
+  request(`${ROTAS.instituicoes}/excluir`, { method: 'DELETE', body: { id } })
