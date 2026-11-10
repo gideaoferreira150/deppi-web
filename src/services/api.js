@@ -1,9 +1,10 @@
-const BASE = '/api-proxy'
+const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
 export const ROTAS = {
   login: '/auth/login',
   resumo: '/admin/relatorios/resumo',
   instituicoes: '/instituicao',
+  cursos: '/cursos',
 }
 const TOKEN_KEY = 'deppi.token'
 
@@ -127,3 +128,17 @@ export const atualizarInstituicao = (id, dados) =>
 
 export const excluirInstituicao = (id) =>
   request(`${ROTAS.instituicoes}/excluir`, { method: 'DELETE', body: { id } })
+
+export const listarCursos = async () => {
+  const r = await request(ROTAS.cursos)
+  return r.data ?? []
+}
+
+export const criarCurso = (dados) =>
+  request(ROTAS.cursos, { method: 'POST', body: dados })
+
+export const atualizarCurso = (id, dados) =>
+  request(`${ROTAS.cursos}/${id}`, { method: 'PUT', body: dados })
+
+export const excluirCurso = (id) =>
+  request(`${ROTAS.cursos}/${id}`, { method: 'DELETE' })
