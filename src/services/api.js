@@ -5,6 +5,8 @@ export const ROTAS = {
   resumo: '/admin/relatorios/resumo',
   instituicoes: '/instituicao',
   cursos: '/cursos',
+  usuarios: '/users',
+  concederCargo: '/admin/cadastro',
 }
 const TOKEN_KEY = 'deppi.token'
 
@@ -38,6 +40,7 @@ async function request(path, { method = 'GET', body } = {}) {
   if (!res.ok) {
     const err = new Error(
       data.mensagem ||
+      data.msg ||
       data.message ||
       data.erro ||
       data.error ||
@@ -142,3 +145,10 @@ export const atualizarCurso = (id, dados) =>
 
 export const excluirCurso = (id) =>
   request(`${ROTAS.cursos}/${id}`, { method: 'DELETE' })
+export const listarUsuarios = async () => {
+  const r = await request(ROTAS.usuarios)
+  return Array.isArray(r) ? r : r.data ?? []
+}
+
+export const concederCargo = (id, cargo) =>
+  request(ROTAS.concederCargo, { method: 'POST', body: { id, cargo } })
