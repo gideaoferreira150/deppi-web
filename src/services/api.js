@@ -19,7 +19,7 @@ export const setToken = (token) =>
 export const clearToken = () =>
   localStorage.removeItem(TOKEN_KEY)
 
-async function request(path, { method = 'GET', body } = {}) {
+export async function request(path, { method = 'GET', body } = {}) {
   const headers = { 'Content-Type': 'application/json' }
   const token = getToken()
 
