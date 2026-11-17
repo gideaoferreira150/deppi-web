@@ -69,6 +69,14 @@ export default function ProfessorDetalhePage() {
 
   return (
     <>
+      <Link
+        href="/professores"
+        style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 4 }}
+      >
+        <span className="mi" style={{ fontSize: 18 }}>arrow_back</span>
+        Professores
+      </Link>
+
       <div className="pagina-topo">
         <div>
           <span className="mono muted peq">SIAPE {prof.siape}</span>
